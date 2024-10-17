@@ -1,66 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# # ¡Hola, Paola!  
-# 
-# Mi nombre es Carlos Ortiz, soy code reviewer de TripleTen y voy a revisar el proyecto que acabas de desarrollar.
-# 
-# Cuando vea un error la primera vez, lo señalaré. Deberás encontrarlo y arreglarlo. La intención es que te prepares para un espacio real de trabajo. En un trabajo, el líder de tu equipo hará lo mismo. Si no puedes solucionar el error, te daré más información en la próxima ocasión. 
-# 
-# Encontrarás mis comentarios más abajo - **por favor, no los muevas, no los modifiques ni los borres**.
-# 
-# ¿Cómo lo voy a hacer? Voy a leer detenidamente cada una de las implementaciones que has llevado a cabo para cumplir con lo solicitado. Verás los comentarios de esta forma:
-# 
-# <div class="alert alert-block alert-success">
-# <b>Comentario del revisor</b> <a class="tocSkip"></a>
-#     
-# Si todo está perfecto.
-# </div>
-# 
-# 
-# <div class="alert alert-block alert-warning">
-# <b>Comentario del revisor</b> <a class="tocSkip"></a>
-#     
-# Si tu código está bien pero se puede mejorar o hay algún detalle que le hace falta.
-# </div>
-# 
-# 
-# <div class="alert alert-block alert-danger">
-#     
-# <b>Comentario del revisor</b> <a class="tocSkip"></a>
-#     
-#     
-# Si de pronto hace falta algo o existe algún problema con tu código o conclusiones.
-# </div>
-# 
-# 
-# Puedes responderme de esta forma: 
-# 
-# 
-# <div class="alert alert-block alert-info">
-# <b>Respuesta del estudiante</b> <a class="tocSkip"></a>
-# </div>
-# ¡Empecemos!
-
-# # ¿Cuál es la mejor tarifa?
-# 
-# Trabajas como analista para el operador de telecomunicaciones Megaline. La empresa ofrece a sus clientes dos tarifas de prepago, Surf y Ultimate. El departamento comercial quiere saber cuál de las tarifas genera más ingresos para poder ajustar el presupuesto de publicidad.
-# 
-# Vas a realizar un análisis preliminar de las tarifas basado en una selección de clientes relativamente pequeña. Tendrás los datos de 500 clientes de Megaline: quiénes son los clientes, de dónde son, qué tarifa usan, así como la cantidad de llamadas que hicieron y los mensajes de texto que enviaron en 2018. Tu trabajo es analizar el comportamiento de los clientes y determinar qué tarifa de prepago genera más ingresos.
-
-# ## INTRODUCCIÓN
-# 
-# El propósito del proyecto es hacer un análisis estadístico de los ingresos que generan los planes de prepago de la empresa Megaline. Todo esto para poder hacer un ajuste en el presupuesto de publicidad.
-# Para poder efectuar este análisis se deben realizar una serie de pasos para poder manipular de una manera mas eficiente el volumen de datos a trabajar. Es necesario visualizar, preparar, corregir y enriquezcer los datos para posteriormente proceder al análisis y poder responder la pregunta principal y las que vayan surgiendo en el camino. 
-# 
-# 
-# 
-
-# ## Inicialización
-
-# In[1]:
-
-
 # Cargar todas las librerías
 import pandas as pd
 import seaborn as sns 
@@ -124,16 +61,12 @@ display(data_plans.head())
 # 
 # Esta tabla está compuesta por 8 columnas, de los cuales 2 son datos float64, 5 int65 y 1 object. Las columnas están debidamente nombradas y no existen valores ausentes ni erróneos. Sin embargo, para poder efectuar futuras fusiones de data, realizaré un renombramiento de la columna 'plan_name' a 'plan' para que se titule de igual forma que en la tabla de usuarios.
 
-# ## Corregir datos
 
 # In[6]:
 
 
 data_plans = data_plans.rename(columns={'plan_name': 'plan'})
 display(data_plans.head())
-
-
-# ## Enriquecer los datos
 
 # In[ ]:
 
@@ -174,9 +107,6 @@ data_users['churn_date'].fillna('active plan', inplace=True)
 display(data_users.info())
 display(data_users.head(30))
 
-
-# ### Enriquecer los datos
-
 # In[ ]:
 
 
@@ -208,13 +138,6 @@ display(data_calls.head())
 
 # ### Corregir los datos
 
-# In[ ]:
-
-
-
-
-
-# ### Enriquecer los datos
 
 # In[12]:
 
@@ -249,17 +172,8 @@ display(data_messages.duplicated().sum())
 # 
 # En esta tabla se pueden observar 3 columnas, de las cuales 1 son datos int64 y 2 object. Las columnas están debidamente nombradas y no existen valores ausentes, duplicados ni erróneos.
 
-# ### Corregir los datos
-
 # In[ ]:
 
-
-
-
-
-# ### Enriquecer los datos
-
-# [Agrega factores adicionales a los datos si crees que pudieran ser útiles.]
 
 # In[15]:
 
@@ -294,15 +208,6 @@ display(data_internet.duplicated().sum())
 # 
 # En esta tabla se pueden observar 4 columnas, de las cuales 1 son datos float64, 1 int64 y 2 object. Las columnas están debidamente nombradas y no existen valores ausentes, duplicados ni erróneos.
 
-# ### Corregir los datos
-
-# In[ ]:
-
-
-
-
-
-# ### Enriquecer los datos
 
 # In[18]:
 
@@ -713,12 +618,6 @@ sns.boxplot(data = data_megaline, x = 'total_income_per_user', y = 'plan')
 # En este punto se puede observar que las varianzas y las medias son diferentes. 
 # Como se puede ver en el histograma, los clientes del plan surf tienden a tener un comportamiento más disperso. Estos suelen pagar montos variados debido a los diferentes recargos que se les aplica por concepto de llamadas, mensajes y gb. Mientras que, por otro lado, el ingreso de los usuarios del plan ultimate no presenta muchas variaciones, ya que, a ser un plan con más minutos, mensajes y gb no se les aplican estos recargos.  
 
-# <div class="alert alert-block alert-success">
-# <b>Comentario del revisor</b> <a class="tocSkip"></a>
-#     
-# Muy buen trabajo con el análisis gráfico.
-# </div>
-# 
 
 # ## Prueba las hipótesis estadísticas
 
@@ -803,21 +702,7 @@ else:
 # 5. El ingreso promedio de NY-NJ es diferente al del resto de las regiones.
 # 
 # 6. Según las observaciones y el resultado del análisis, el enfoque publicitario debería tenerlo el plan Ultimate, puesto que el plan surf ya tiene el doble de usuarios y éstos generan más recargos pero su ingreso mensual es menor. En cambio, el plan Ultimate, si bien, genera mayores ingresos mensuales, se podría captar un mayor número de clientes y los ingresos aumentarían de manera significativa en comparación con el plan Surf.
-# 
 
-# <div class="alert alert-block alert-danger">
-#     
-# # Comentarios genrales
-# <b>Comentario del revisor</b> <a class="tocSkip"></a>
-#     
-# Gran trabajo, Paola. Nos quedan algunos elementos por corregir antes de poder aprobar tu proyecto. Recuerda actualizar tus conclusiones si algo cambia.
-# </div>
-# 
-
-# <div class="alert alert-block alert-success">
-#     
-# # Comentarios genrales
-# <b>Comentario del revisor</b> <a class="tocSkip"></a>
 #     
 # Todo corregido. Has aprobado un nuevo proyecto. ¡Felicitaciones!
 # </div>
